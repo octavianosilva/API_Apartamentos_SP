@@ -1,25 +1,27 @@
-from flask import Flask, request, render_template  # Import flask libraries
+# Importando as bibliotecas
+from flask import Flask, request, render_template, jsonify
 from flask_restful import Resource, Api
 from joblib import load
 import preprocessamento
 
-# Initialize the flask class and specify the templates directory
-app = Flask(__name__, template_folder="templates")
+# Iniciando o Flask e especificando o repositorio dos templates
+app = Flask(__name__, template_folder="template")
 
+# iniciando a API
 api = Api(app)
 
 # Carregando os modelos
 model_rent = load('Modelos/model_rent.joblib')
 model_sale = load('Modelos/model_sale.joblib')
 
-# Default route set as 'home'
+# Rota padrão setada para home
 @app.route('/home')
 def home():
-    return render_template('home.html')  # Render home.html
+    return render_template('home.html')  # Rendezirar o template
 
-# Route 'predict' accepts GET request
-@app.route('/predict', methods=['GET'])
-def predict():
+# Rota 'predict' aceita GET request
+@app.route('/predict', methods=['POST', 'GET'])
+def predict_price():
     negotiation_type = request.args.get('negotiation_type')  # Get parameters for Negotiation_Type
     condo = request.args.get('condo')  # Get parameters for Condo
     size = request.args.get('size')  # Get parameters for petal length
@@ -47,3 +49,7 @@ def predict():
         previsao = model_sale.predict(preprocessamento.tratamento(list))
         # Render the output in new HTML page
         return render_template('output.html', previsao=previsao)
+
+# Executar o servidor Flask
+if(__name__== '__main__'):
+    app.run(debug=True)
