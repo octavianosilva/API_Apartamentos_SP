@@ -3,9 +3,6 @@ from flask import Flask, request, render_template, jsonify
 from flask_restful import Resource, Api
 from joblib import load
 
-# Importando o arquivo .py 'preprocessamento'
-import preprocessamento
-
 # Iniciando o Flask e especificando o repositorio dos templates
 app = Flask(__name__, template_folder="template")
 
