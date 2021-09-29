@@ -4,10 +4,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
 # Lendo os arquivos .csv
-bairros_aluguel = pd.read_csv(r"C:\Users\octav\PycharmProjects\Deploy_ML\processamento\bairros_aluguel.csv")
-bairros_venda = pd.read_csv(r"C:\Users\octav\PycharmProjects\Deploy_ML\processamento\bairros_venda.csv")
-df_aluguel = pd.read_csv(r"C:\Users\octav\PycharmProjects\Deploy_ML\processamento\df_aluguel.csv")
-df_venda = pd.read_csv(r"C:\Users\octav\PycharmProjects\Deploy_ML\processamento\df_venda.csv")
+#C:\Users\octav\PycharmProjects\Deploy_ML\processamento\bairros_aluguel.csv
+bairros_aluguel = pd.read_csv(r"processamento/bairros_aluguel.csv")
+bairros_venda = pd.read_csv(r"processamento/bairros_venda.csv")
+df_aluguel = pd.read_csv(r"processamento/df_aluguel.csv")
+df_venda = pd.read_csv(r"processamento/df_venda.csv")
 
 # Dropando as colunas Unnamed que apareceram com a importação
 bairros_aluguel.drop('Unnamed: 0', axis=1, inplace=True)

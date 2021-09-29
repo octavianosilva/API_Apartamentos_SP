@@ -1,10 +1,12 @@
 # Importando as bibliotecas
-from flask import Flask, request, render_template, jsonify
-from flask_restful import Resource, Api
+from flask import Flask, request, render_template
+from flask_restful import Api
 from joblib import load
 
 # Iniciando o Flask e especificando o repositorio dos templates
 app = Flask(__name__, template_folder="template")
+
+import preprocessamento
 
 # Iniciando a API
 api = Api(app)
