@@ -24,18 +24,18 @@ def home():
 @app.route('/predict', methods=['GET'])
 def predict_price():
    try:
-       negotiation_type = int(request.args.get('negotiation_type'))  # Get parameters for Negotiation_Type
-       condo = int(request.args.get('condo'))  # Get parameters for Condo
-       size = int(request.args.get('size'))  # Get parameters for petal length
-       rooms = int(request.args.get('rooms'))  # Get parameters for petal width
-       toilets = int(request.args.get('toilets'))  # Get parameters for Toilets
-       suites = int(request.args.get('suites'))  # Get parameters for Suites
-       parking = int(request.args.get('parking'))  # Get parameters for Parking
-       elevator = int(request.args.get('elevator'))  # Get parameters for Elevator
-       furnished = int(request.args.get('furnished'))  # Get parameters for Furnished
-       swimming_pool = int(request.args.get('swimming_pool'))  # Get parameters for Swimming_Pool
-       new = int(request.args.get('new'))  # Get parameters for New
-       bairro = request.args.get('bairro')  # Get parameters for Bairro
+       negotiation_type = int(request.args.get('negotiation_type'))  # Obter os parâmetros para Negotiation_Type
+       condo = int(request.args.get('condo'))  # Obter os parâmetros para Condo
+       size = int(request.args.get('size'))  # Obter os parâmetros para Size
+       rooms = int(request.args.get('rooms'))  # Obter os parâmetros para Rooms
+       toilets = int(request.args.get('toilets'))  # Obter os parâmetros para Toilets
+       suites = int(request.args.get('suites'))  # Obter os parâmetros para Suites
+       parking = int(request.args.get('parking'))  # Obter os parâmetros para Parking
+       elevator = int(request.args.get('elevator'))  # Obter os parâmetros para Elevator
+       furnished = int(request.args.get('furnished'))  # Obter os parâmetros para Furnished
+       swimming_pool = int(request.args.get('swimming_pool'))  # Obter os parâmetros para Swimming_Pool
+       new = int(request.args.get('new'))  # Obter os parâmetros para New
+       bairro = request.args.get('bairro')  # Obter os parâmetros para Bairro
 
        bairros_sem_aluguel = ['District_Perus', 'District_São Domingos']
 
@@ -57,7 +57,7 @@ def predict_price():
            # Obtendo a previsão
            previsao = round(modelo_venda.predict(preprocessamento.tratamento(negotiation_type, condo, size, rooms,
                                                                              toilets, suites, parking, elevator,
-                                                                             furnished, swimming_pool, new, bairro))[0])
+                                                                             furnished, swimming_pool, new, bairro)))
            # Exibindo a previsão na página web output
            return render_template('output.html', previsao=previsao)
    except:
@@ -65,4 +65,4 @@ def predict_price():
 
 # Executar o servidor Flask
 if(__name__== '__main__'):
-    app.run(debug=True)
+    app.run()
